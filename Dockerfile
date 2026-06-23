@@ -15,10 +15,10 @@
 # Build:
 #   docker build \
 #     --build-context dataharmonizer-src=../DataHarmonizer \
-#     -t mimicc-dh-builder .
+#     -t dh-builder .
 #
 # Run:
-#   docker run --rm -v <schema-dir>:/schema:ro -v <output-dir>:/output mimicc-dh-builder
+#   docker run --rm -v <schema-dir>:/schema:ro -v <output-dir>:/output dh-builder
 #   (expects /schema/mimicc.yaml; writes the built bundle to /output)
 FROM node:20-slim
 RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*

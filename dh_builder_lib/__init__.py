@@ -1,6 +1,6 @@
 """DataHarmonizer (DH) bundle builder Docker executor library.
 
-Runs the mimicc-dh-builder image as a Docker container and streams its log
+Runs the dh-builder image as a Docker container and streams its log
 output. Has no assumptions about Docker-in-Docker or host-path mounting —
 callers are responsible for path validation and creating the output
 directory.
@@ -14,7 +14,7 @@ from __future__ import annotations
 import subprocess
 from collections.abc import Generator
 
-_DH_BUILDER_IMAGE = "mimicc-dh-builder"
+_DH_BUILDER_IMAGE = "dh-builder"
 
 
 def iter_dh_builder_logs(
@@ -33,7 +33,7 @@ def iter_dh_builder_logs(
             bundle to (typically the host path backing server/static/dh/).
         template: DataHarmonizer template name to build (passed to the
             image as the TEMPLATE env var). Defaults to "mimicc".
-        image: Docker image tag to run. Defaults to "mimicc-dh-builder".
+        image: Docker image tag to run. Defaults to "dh-builder".
 
     Yields:
         Decoded log lines (without trailing newline).
