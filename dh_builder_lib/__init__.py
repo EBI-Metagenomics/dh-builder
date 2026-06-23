@@ -21,6 +21,8 @@ def iter_dh_builder_logs(
     *,
     schema_dir: str,
     output_dir: str,
+    template: str = "mimicc",
+    image: str = _DH_BUILDER_IMAGE,
 ) -> Generator[str, None, int]:
     """Rebuild the DH bundle in Docker and yield decoded log lines.
 
@@ -29,6 +31,9 @@ def iter_dh_builder_logs(
             containing the LinkML schema as ``mimicc.yaml``.
         output_dir: Absolute path on the Docker host to write the built
             bundle to (typically the host path backing server/static/dh/).
+        template: DataHarmonizer template name to build (passed to the
+            image as the TEMPLATE env var). Defaults to "mimicc".
+        image: Docker image tag to run. Defaults to "mimicc-dh-builder".
 
     Yields:
         Decoded log lines (without trailing newline).
@@ -47,7 +52,9 @@ def iter_dh_builder_logs(
         f"{schema_dir}:/schema:ro",
         "-v",
         f"{output_dir}:/output",
-        _DH_BUILDER_IMAGE,
+        "-e",
+        f"TEMPLATE={template}",
+        image,
     ]
 
     proc = subprocess.Popen(
