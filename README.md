@@ -8,14 +8,14 @@ both consumers below — they differ only in which `TEMPLATE` they pass at
 `docker run` time, not in image content.
 
 Used by:
-- [mimicc-ena-submission-assistant](https://github.com/timrozday-mgnify/mimicc-ena-submission-assistant)'s
+- [mimicc-ena-submission-assistant](https://github.com/EBI-Metagenomics/mimicc-ena-submission-assistant)'s
   admin-only `POST /api/dh/build` endpoint (`server/dh_builder_runner.py`),
   which spawns the `dh-builder` image as a sibling container (default
   `TEMPLATE=mimicc`) the same way that app's `read-helper` spawns
   `enasequence/webin-cli`. Also consumes `scripts/dh_build_steps.sh` directly
   (as a sibling-checkout build context) for its own embedded DH-bundle build
   stage and host-dev script.
-- [dataharmonizer-template-builder](https://github.com/timrozday-mgnify/dataharmonizer-template-builder),
+- [dataharmonizer-template-builder](https://github.com/EBI-Metagenomics/dataharmonizer-template-builder),
   which runs the same `dh-builder` image with `TEMPLATE=template_builder_preview`.
 
 ## Layout
